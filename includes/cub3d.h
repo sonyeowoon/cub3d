@@ -14,12 +14,13 @@
 # include "get_next_line.h"
 # include "mlx.h"
 
-# define WIN_HEIGHT	640
-# define WIN_WIDTH	480
+# define WIN_HEIGHT	480
+# define WIN_WIDTH	640
 
 // init
 void	init_data(t_data *data);
 void	init_mlx(t_data *data);
+void	init_texture(t_data *data);
 
 // parse
 int		parse_args(t_data *data, char **argv);

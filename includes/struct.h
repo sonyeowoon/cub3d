@@ -23,9 +23,17 @@ typedef struct s_color
 typedef struct s_texture
 {
 	char	*north;
+	int		no_tex_width;
+	int		no_tex_height;
 	char	*south;
+	int		so_tex_width;
+	int		so_tex_height;
 	char	*east;
+	int		ea_tex_width;
+	int		ea_tex_height;
 	char	*west;
+	int		we_tex_width;
+	int		we_tex_height;
 	t_color	floor;
 	t_color	ceiling;
 	int		has_floor;

@@ -21,6 +21,8 @@ int main(int argc, char **argv)
 	init_data(&data);
 	if (parse_args(&data, argv) != 0)
 		return (1);
+	if (raycast(&data) != 0)
+		return (1);
 	// init_mlx(&data);
 	// init_textures(&data);
 
