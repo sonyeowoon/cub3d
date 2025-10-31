@@ -46,6 +46,11 @@ typedef struct s_img
 	void	*south;
 	void	*east;
 	void	*west;
+	void	*bg_img_ptr;
+	char	*bg_addr;
+	int	bg_bpp;
+	int	bg_sl;
+	int	bg_endian;
 }	t_img;
 
 typedef struct s_map

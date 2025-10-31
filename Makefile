@@ -24,13 +24,14 @@ UTILS_SRC = ft_is.c print_err.c
 UTILS_LOC = $(addprefix $(UTILS_DIR)/, $(UTILS_SRC))
 
 INIT_DIR = $(SRC_DIR)/init
-INIT_SRC = init_data.c
+INIT_SRC = init_data.c init_mlx.c
 INIT_LOC = $(addprefix $(INIT_DIR)/, $(INIT_SRC))
 
 SRCS =	main.c \
 		$(PARSE_LOC) \
 		$(UTILS_LOC) \
-		$(INIT_LOC)
+		$(INIT_LOC) \
+		background.c
 
 INCLUDES = -Iincludes -I$(LIBFT_DIR) -I$(GNL_DIR) -I$(MLX_DIR)
 

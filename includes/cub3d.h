@@ -20,7 +20,7 @@
 // init
 void	init_data(t_data *data);
 void	init_mlx(t_data *data);
-void	init_texture(t_data *data);
+//void	init_texture(t_data *data);
 
 // parse
 int		parse_args(t_data *data, char **argv);

@@ -12,6 +12,8 @@
 
 #include "cub3d.h"
 
+#include <stdio.h>
+int background(t_data *data);
 int main(int argc, char **argv)
 {
 	t_data data;
@@ -21,9 +23,12 @@ int main(int argc, char **argv)
 	init_data(&data);
 	if (parse_args(&data, argv) != 0)
 		return (1);
-	if (raycast(&data) != 0)
-		return (1);
-	// init_mlx(&data);
+	init_mlx(&data);
+	if (background(&data))
+		printf("sibal\n");
+	mlx_loop(data.mlx);
+	//if (raycast(&data) != 0)
+	//	return (1);
 	// init_textures(&data);
 
 
