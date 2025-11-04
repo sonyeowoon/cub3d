@@ -12,15 +12,15 @@
 
 #include "cub3d.h"
 
-int	check_texture_path(t_texture *texture)
+int	check_texture_path(t_assets *asset)
 {
-	if (check_file(texture->north, 0) != 0)
+	if (check_file(asset->north.path, 0) != 0)
 		return (1);
-	if (check_file(texture->south, 0) != 0)
+	if (check_file(asset->south.path, 0) != 0)
 		return (1);
-	if (check_file(texture->west, 0) != 0)
+	if (check_file(asset->west.path, 0) != 0)
 		return (1);
-	if (check_file(texture->east, 0) != 0)
+	if (check_file(asset->east.path, 0) != 0)
 		return (1);
 	return (0);
 		

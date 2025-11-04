@@ -25,12 +25,12 @@ static void	print_data(t_data *data)
 	}
 	printf("height: %d, width: %d, player_count: %d, map_start: %d\n", data->map.height, data->map.width, data->map.player_count, data->map.map_start);
 	printf("=== t_texture ===\n");
-	printf("north path: %s\n", data->texture.north);
-	printf("south path: %s\n", data->texture.south);
-	printf("east path: %s\n", data->texture.east);
-	printf("west path: %s\n", data->texture.west);
-	printf("floor: %d, %d, %d\n", data->texture.floor.r, data->texture.floor.g, data->texture.floor.b);
-	printf("ceiling: %d, %d, %d\n", data->texture.ceiling.r, data->texture.ceiling.g, data->texture.ceiling.b);
+	printf("north path: %s\n", data->asset.north.path);
+	printf("south path: %s\n", data->asset.south.path);
+	printf("east path: %s\n", data->asset.east.path);
+	printf("west path: %s\n", data->asset.west.path);
+	printf("floor: %X\n", data->asset.floor_rgb);
+	printf("ceiling: %X\n", data->asset.ceil_rgb);
 }
 
 int	parse_args(t_data *data, char **argv)
@@ -39,14 +39,14 @@ int	parse_args(t_data *data, char **argv)
 		return (1);
 	if (read_file(argv[1], &data->file) != 0)
 		return (free_file(&data->file), 1);
-	if (parse_header(&data->file, &data->texture) != 0)
+	if (parse_header(&data->file, &data->asset) != 0)
 		return (1);
 	if (extract_map(&data->file, &data->map) != 0)
 		return (1);
 	print_data(data);
 	if (validate_map(data, &data->map) != 0)
 		return (1);
-	if (check_texture_path(&data->texture) != 0)
+	if (check_texture_path(&data->asset) != 0)
 		return (1);
 	return (0);
 }

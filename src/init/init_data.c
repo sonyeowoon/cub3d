@@ -12,20 +12,33 @@
 
 #include "cub3d.h"
 
+static void	init_img(t_img *img)
+{
+	img->img = NULL;
+	img->addr = NULL;
+	img->bpp = 0;
+	img->line_len = 0;
+	img->endian = 0;
+	img->w = 0;
+	img->h = 0;
+}
+
 static void	init_texture(t_texture *texture)
 {
-	texture->north = NULL;
-	texture->south = NULL;
-	texture->east = NULL;
-	texture->west = NULL;
-	texture->floor.r = 0;
-	texture->floor.g = 0;
-	texture->floor.b = 0;
-	texture->ceiling.r = 0;
-	texture->ceiling.g = 0;
-	texture->ceiling.b = 0;
-	texture->has_floor = 0;
-	texture->has_ceiling = 0;
+	texture->path = NULL;
+	init_img(&texture->img);
+}
+
+static void	init_assets(t_assets *asset)
+{
+	init_texture(&asset->north);
+	init_texture(&asset->south);
+	init_texture(&asset->east);
+	init_texture(&asset->west);
+	asset->ceil_rgb = 0;
+	asset->floor_rgb = 0;
+	asset->has_ceiling = 0;
+	asset->has_floor = 0;
 }
 
 static void	init_map(t_map *map)
@@ -39,12 +52,10 @@ static void	init_map(t_map *map)
 
 static void	init_player(t_player *player)
 {
-	player->pos_x = 0.0;
-	player->pos_y = 0.0;
+	player->x = 0.0;
+	player->y = 0.0;
 	player->dir_x = 0.0;
 	player->dir_y = 0.0;
-	player->plane_x = 0.0;
-	player->plane_y = 0.0;
 }
 
 static void	init_file(t_file *file)
@@ -56,14 +67,6 @@ static void	init_file(t_file *file)
 	file->read_count = 0;
 }
 
-static void	init_img(t_img *img)
-{
-	img->south = NULL;
-	img->north = NULL;
-	img->east = NULL;
-	img->west = NULL;
-}
-
 void	init_data(t_data *data)
 {
 	data->mlx = NULL;
@@ -72,7 +75,7 @@ void	init_data(t_data *data)
 	data->win_width = WIN_WIDTH;
 	init_file(&data->file);
 	init_map(&data->map);
-	init_texture(&data->texture);
-	init_img(&data->img);
+	init_img(&data->fb);
 	init_player(&data->player);
+	init_assets(&data->asset);
 }

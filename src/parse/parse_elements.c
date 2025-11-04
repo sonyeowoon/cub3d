@@ -40,24 +40,24 @@ static char	*get_xpm_path(char *line, int j)
 	return (path);
 }
 
-static int	set_xpm_texture(t_texture *texture, char *line, int j)
+static int	set_xpm_texture(t_assets *asset, char *line, int j)
 {
 	if (line[j + 2] && !is_space_ex_newline(line[j + 2]))
 		return (1);
-	if (line[j] == 'N' && line[j + 1] == 'O' && !texture->north)
-		texture->north = get_xpm_path(line, j + 2);
-	else if (line[j] == 'S' && line[j + 1] == 'O' && !texture->south)
-		texture->south = get_xpm_path(line, j + 2);
-	else if (line[j] == 'W' && line[j + 1] == 'E' && !texture->west)
-		texture->west = get_xpm_path(line, j + 2);
-	else if (line[j] == 'E' && line[j + 1] == 'A' && !texture->east)
-		texture->east = get_xpm_path(line, j + 2);
+	if (line[j] == 'N' && line[j + 1] == 'O' && !asset->north.path)
+		asset->north.path = get_xpm_path(line, j + 2);
+	else if (line[j] == 'S' && line[j + 1] == 'O' && !asset->south.path)
+		asset->south.path = get_xpm_path(line, j + 2);
+	else if (line[j] == 'W' && line[j + 1] == 'E' && !asset->west.path)
+		asset->west.path = get_xpm_path(line, j + 2);
+	else if (line[j] == 'E' && line[j + 1] == 'A' && !asset->east.path)
+		asset->east.path = get_xpm_path(line, j + 2);
 	else
 		return (1);
 	return (0);
 }
 
-static int	get_texture(t_texture *texture, char **file, int i, int j)
+static int	get_texture(t_assets *asset, char **file, int i, int j)
 {
 	while (is_space(file[i][j]) == 1)
 		j++;
@@ -65,13 +65,13 @@ static int	get_texture(t_texture *texture, char **file, int i, int j)
 	{
 		if (ft_isprint(file[i][j + 1]) && !ft_isdigit(file[i][j + 1]) && is_space_ex_newline(file[i][j + 2]))
 		{
-			if (set_xpm_texture(texture, file[i], j) != 0)
+			if (set_xpm_texture(asset, file[i], j) != 0)
 				return (treat_err("set xpm"), 1);
 			return (-1);
 		}
 		else
 		{
-			if (set_color_rgb(texture, file[i], j) != 0)
+			if (set_color_rgb(asset, file[i], j) != 0)
 				return (treat_err("set rgb"), 1);
 			return (-1);
 		}
@@ -81,7 +81,7 @@ static int	get_texture(t_texture *texture, char **file, int i, int j)
 	return 0;
 }
 
-int	parse_header(t_file *file, t_texture *texture)
+int	parse_header(t_file *file, t_assets *asset)
 {
 	int	i;
 	int	j;
@@ -93,7 +93,7 @@ int	parse_header(t_file *file, t_texture *texture)
 		j = 0;
 		while (file->file[i][j])
 		{
-			tmp = get_texture(texture, file->file, i, j);
+			tmp = get_texture(asset, file->file, i, j);
 			if (tmp == -1 || tmp == 2)
 				break ;
 			else if (tmp == 0)

@@ -12,10 +12,11 @@
 
 #include "cub3d.h"
 
-static int	get_rgb(t_color *color, char *line)
+static int	get_rgb(unsigned int *bg, char *line)
 {
 	char	**colors;
 	int		i;
+	int		c[3];
 
 	while (is_space(*line))
 		line++;
@@ -26,32 +27,31 @@ static int	get_rgb(t_color *color, char *line)
 	if (i != 3)
 		return (treat_err("rgb error"), -1);
 		// return (free_arr(colors), treat_err("rgb error"), -1);
-	color->r = ft_atoi(colors[0]);
-	if (color->r == -1 || !(color->r >= 0 && color->r<= 255))
+	c[0] = ft_atoi(colors[0]);
+	c[1] = ft_atoi(colors[1]);
+	c[2] = ft_atoi(colors[2]);
+	if (!(c[0] >= 0 && c[0] <= 255 && c[1] >= 0 && c[1] <= 255 && c[2] >= 0 && c[2] <= 255))
 		return (-1);
-	color->g = ft_atoi(colors[1]);
-	if (color->g == -1 || !(color->g >= 0 && color->g <= 255))
+	if (c[0] == -1 || c[1] == -1 || c[2] == -1)
 		return (-1);
-	color->b = ft_atoi(colors[2]);
-	if (color->b == -1 || !(color->b >= 0 && color->b <= 255))
-		return (-1);
-	return (1);	
+	*bg = ((c[0] << 16) | (c[1] << 8) | c[2]);
+	return (1);
 }
 
-int	set_color_rgb(t_texture *texture, char *line, int j)
+int	set_color_rgb(t_assets *asset, char *line, int j)
 {
 	if (line[j + 1] && line[j + 1] != ' ' && line[j + 1] != '\t')
 		return 1;
-	if (line[j] == 'F' && texture->has_floor == 0)
+	if (line[j] == 'F' && asset->has_floor == 0)
 	{
-		texture->has_floor = get_rgb(&texture->floor, &line[j + 2]);
-		if (texture->has_floor == -1)
+		asset->has_floor = get_rgb(&asset->floor_rgb, &line[j + 2]);
+		if (asset->has_floor == -1)
 			return (treat_err("floor rgb error"), 1);
 	}
-	else if (line[j] == 'C' && texture->has_ceiling == 0)
+	else if (line[j] == 'C' && asset->has_ceiling == 0)
 	{
-		texture->has_ceiling = get_rgb(&texture->ceiling, &line[j + 2]);
-		if (texture->has_ceiling == -1)
+		asset->has_ceiling = get_rgb(&asset->ceil_rgb, &line[j + 2]);
+		if (asset->has_ceiling == -1)
 			return (treat_err("ceiling rgb error"), 1);
 	}
 	else

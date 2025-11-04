@@ -17,8 +17,8 @@ static int	check_pos_valid(t_data *data, char **map)
 	int	y;
 	int	x;
 
-	y = (int)data->player.pos_y;
-	x = (int)data->player.pos_x;
+	y = (int)data->player.y;
+	x = (int)data->player.x;
 	if (ft_strlen(map[y - 1]) < (size_t)x
 		|| ft_strlen(map[y + 1]) < (size_t)x
 		|| is_space2(map[y][x - 1]) != 0
@@ -44,8 +44,8 @@ static int	check_player(t_data *data, char **map)
 		{
 			if (ft_strchr("NSEW", map[i][j]))
 			{
-				data->player.pos_x = (double)j + 0.3;
-				data->player.pos_y = (double)i + 0.3;
+				data->player.x = (double)j + 0.3;
+				data->player.y = (double)i + 0.3;
 				map[i][j] = '0';
 			}
 			j++;

@@ -16,7 +16,7 @@ LIBFT_A = $(LIBFT_DIR)/libft.a
 SRC_DIR = src
 
 PARSE_DIR = $(SRC_DIR)/parse
-PARSE_SRC = check_file.c parse_args.c check_map_wall.c parse_elements.c check_path.c read_file.c extract_map.c validate_map.c get_color.c parse_free.c
+PARSE_SRC = check_file.c parse_args.c check_map_wall.c parse_elements.c check_path.c read_file.c extract_map.c validate_map.c parse_free.c get_color.c
 PARSE_LOC = $(addprefix $(PARSE_DIR)/, $(PARSE_SRC))
 
 UTILS_DIR = $(SRC_DIR)/utils
