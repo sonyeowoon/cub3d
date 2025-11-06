@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-void	init_texture(t_data *data)
+void	init_tex_img(t_data *data)
 {
 	int	img_x;
 	int	img_y;
@@ -41,7 +41,7 @@ void	init_mlx(t_data *data)
 	if (!data->mlx)
 		return ;
 		//return (free_exit(data), treat_err("mlx"), 1);
-	data->win = mlx_new_window(data->mlx, 480, 640, "Cub3D");
+	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height, "Cub3D");
 	if (!data->win)
 		return ;
 		//return (free_exit(data), treat_err("mlx"), 1);

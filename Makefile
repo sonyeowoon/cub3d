@@ -1,7 +1,7 @@
 NAME = cub3d
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 MLX_DIR = ./minilibx-linux
 MLX_LIB = $(MLX_DIR)/libmlx_Linux.a
@@ -24,14 +24,18 @@ UTILS_SRC = ft_is.c print_err.c
 UTILS_LOC = $(addprefix $(UTILS_DIR)/, $(UTILS_SRC))
 
 INIT_DIR = $(SRC_DIR)/init
-INIT_SRC = init_data.c init_mlx.c
+INIT_SRC = init_data.c init_mlx.c init_render.c
 INIT_LOC = $(addprefix $(INIT_DIR)/, $(INIT_SRC))
+
+RENDER_DIR = $(SRC_DIR)/render
+RENDER_SRC = draw.c
+RENDER_LOC = $(addprefix $(RENDER_DIR)/, $(RENDER_SRC))
 
 SRCS =	main.c \
 		$(PARSE_LOC) \
 		$(UTILS_LOC) \
 		$(INIT_LOC) \
-		background.c
+		$(RENDER_LOC)
 
 INCLUDES = -Iincludes -I$(LIBFT_DIR) -I$(GNL_DIR) -I$(MLX_DIR)
 

@@ -52,10 +52,13 @@ static void	init_map(t_map *map)
 
 static void	init_player(t_player *player)
 {
+	player->plane = PLANE;
 	player->x = 0.0;
 	player->y = 0.0;
 	player->dir_x = 0.0;
 	player->dir_y = 0.0;
+	player->plane_x = 0.0;
+	player->plane_y = 0.0;
 }
 
 static void	init_file(t_file *file)

@@ -13,7 +13,6 @@
 #include "cub3d.h"
 
 #include <stdio.h>
-int background(t_data *data);
 int main(int argc, char **argv)
 {
 	t_data data;
@@ -24,8 +23,15 @@ int main(int argc, char **argv)
 	if (parse_args(&data, argv) != 0)
 		return (1);
 	init_mlx(&data);
-	if (background(&data))
-		printf("sibal\n");
+	if (init_fb(&data, &data.fb))
+		printf("\n");
+	init_tex_img(&data);
+	if (init_pl_vector(&data.player, data.player.dir) == 1)
+	{
+		printf("%f %f\n", data.player.x, data.player.y);
+		printf("fuck\n");
+	}
+	draw(&data);
 	mlx_loop(data.mlx);
 	//if (raycast(&data) != 0)
 	//	return (1);

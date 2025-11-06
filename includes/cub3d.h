@@ -14,12 +14,16 @@
 # include "get_next_line.h"
 # include "mlx.h"
 
-# define WIN_HEIGHT	640
-# define WIN_WIDTH	480
+# define WIN_HEIGHT	480
+# define WIN_WIDTH	640
+# define PLANE		0.66
 
 // init
+int		init_fb(t_data *data, t_img *img);
 void	init_data(t_data *data);
 void	init_mlx(t_data *data);
+void	init_tex_img(t_data *data);
+int		init_pl_vector(t_player *player, char dir);
 
 // parse
 int		parse_args(t_data *data, char **argv);
@@ -40,5 +44,7 @@ int		is_space_ex_newline(char c);
 void	print_err(char *str);
 void	treat_err(char *str);
 
+// render
+void	draw(t_data *data);
 
 #endif
