@@ -18,8 +18,8 @@ static double	get_pwd(t_data *data, t_player *p, int x)
 	double	ray_dir_x;
 	double	ray_dir_y;
 
-	int		map_x = int(p->x);
-	int		map_y = int(p->y);
+	int	map_x = int(p->x);
+	int	map_y = int(p->y);
 
 	double	delta_dist_x;
 	double	delta_dist_y;
@@ -28,8 +28,8 @@ static double	get_pwd(t_data *data, t_player *p, int x)
 	ray_dir_x = p->dir_x + p->plane_x * camera_x;
 	ray_dir_y = p->dir_y + p->plane_y * camera_x;
 
-	delta_dist_x = ;
-	delta_dist_y = ;
+	delta_dist_x = fabs(1 / ray_dir_x);
+	delta_dist_y = fabs(1 / ray_dir_y);
 }
 
 void	render_frame(t_data *data, t_player *p)

@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <math.h>
 # include <sys/time.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
