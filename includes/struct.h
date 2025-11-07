@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:01:44 by jechoi            #+#    #+#             */
-/*   Updated: 2025/10/24 14:06:48 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/11/07 13:09:43 by sangseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@ typedef struct s_color
 	int	b;
 }	t_color;
 */
+typedef struct s_vector
+{
+	double	x;
+	double	y;
+}	t_vector;
+
 typedef struct s_img
 {
 	void	*img;
@@ -46,7 +52,7 @@ typedef struct s_map
 	int		map_start;
 }	t_map;
 
-typedef	struct s_player
+typedef struct s_player
 {
 	char	dir;
 	double	plane;
