@@ -59,6 +59,8 @@ static void	init_player(t_player *player)
 	player->dir_y = 0.0;
 	player->plane_x = 0.0;
 	player->plane_y = 0.0;
+	player->move_spd = 0.05;
+	player->rot_spd = 0.05;
 }
 
 static void	init_file(t_file *file)
@@ -81,4 +83,5 @@ void	init_data(t_data *data)
 	init_img(&data->fb);
 	init_player(&data->player);
 	init_assets(&data->asset);
+	ft_memset(data->keys, 0, sizeof(data->keys));
 }

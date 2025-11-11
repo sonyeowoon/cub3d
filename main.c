@@ -25,14 +25,20 @@ int main(int argc, char **argv)
 	init_mlx(&data);
 	if (init_fb(&data, &data.fb))
 		printf("\n");
-	init_tex_img(&data);
+	init_tex_img(&data, &data.asset);
 	if (init_pl_vector(&data.player, data.player.dir) == 1)
 	{
 		printf("%f %f\n", data.player.x, data.player.y);
-		printf("fuck\n");
+		printf("init_pl_vector error\n");
 	}
 	draw(&data);
+	mlx_hook(data.win, 2, 1L<<0, on_key_press, &data);
+	mlx_hook(data.win, 3, 1L<<1, on_key_release, &data);
+	mlx_hook(data.win, 17, 0, on_close, &data);
+	mlx_loop_hook(data.mlx, on_loop, &data);
 	mlx_loop(data.mlx);
+	//destroy
+
 	//if (raycast(&data) != 0)
 	//	return (1);
 	// init_textures(&data);

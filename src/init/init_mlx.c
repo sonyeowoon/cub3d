@@ -12,27 +12,34 @@
 
 #include "cub3d.h"
 
-void	init_tex_img(t_data *data)
+void	init_tex_img(t_data *data, t_assets *asset)
 {
-	int	img_x;
-	int	img_y;
-	
-	data->asset.north.img.img = mlx_xpm_file_to_image(data->mlx, data->asset.north.path, &img_x, &img_y);
-	if (data->asset.north.img.img == NULL)
+	t_img	*dir;
+
+	dir = &asset->north.img;
+	dir->img = mlx_xpm_file_to_image(data->mlx, asset->north.path, &dir->w, &dir->h);
+	if (dir->img == NULL)
 		return ;
 		//return (free_exit(data), treat_err("mlx img"), 1);
-	data->asset.south.img.img = mlx_xpm_file_to_image(data->mlx, data->asset.south.path, &img_x, &img_y);
-	if (data->asset.south.img.img == NULL)
+	dir->addr = mlx_get_data_addr(dir->img, &dir->bpp, &dir->line_len, &dir->endian);
+	dir = &asset->south.img;
+	dir->img = mlx_xpm_file_to_image(data->mlx, asset->south.path, &dir->w, &dir->h);
+	if (dir->img == NULL)
 		return ;
 		//return (free_exit(data), treat_err("mlx img"), 1);
-	data->asset.east.img.img = mlx_xpm_file_to_image(data->mlx, data->asset.east.path, &img_x, &img_y);
-	if (data->asset.east.img.img == NULL)
+	dir->addr = mlx_get_data_addr(dir->img, &dir->bpp, &dir->line_len, &dir->endian);
+	dir = &asset->east.img;
+	dir->img = mlx_xpm_file_to_image(data->mlx, asset->east.path, &dir->w, &dir->h);
+	if (dir->img == NULL)
 		return ;
 		//return (free_exit(data), treat_err("mlx img"), 1);
-	data->asset.west.img.img = mlx_xpm_file_to_image(data->mlx, data->asset.west.path, &img_x, &img_y);
-	if (data->asset.west.img.img == NULL)
+	dir->addr = mlx_get_data_addr(dir->img, &dir->bpp, &dir->line_len, &dir->endian);
+	dir = &asset->west.img;
+	dir->img = mlx_xpm_file_to_image(data->mlx, asset->west.path, &dir->w, &dir->h);
+	if (asset->west.img.img == NULL)
 		return ;
 		//return (free_exit(data), treat_err("mlx img"), 1);
+	dir->addr = mlx_get_data_addr(dir->img, &dir->bpp, &dir->line_len, &dir->endian);
 }
 
 void	init_mlx(t_data *data)

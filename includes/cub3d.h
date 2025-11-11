@@ -35,7 +35,7 @@
 int		init_fb(t_data *data, t_img *img);
 void	init_data(t_data *data);
 void	init_mlx(t_data *data);
-void	init_tex_img(t_data *data);
+void	init_tex_img(t_data *data, t_assets *asset);
 int		init_pl_vector(t_player *player, char dir);
 
 // parse
@@ -59,5 +59,12 @@ void	treat_err(char *str);
 
 // render
 void	draw(t_data *data);
+void	render_frame(t_data *data, t_player *p);
+
+// hooks
+int on_loop(t_data *data);
+int on_key_press(int kc, t_data *data);
+int on_key_release(int kc, t_data *data);
+int on_close(t_data *data);
 
 #endif

@@ -62,6 +62,8 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
+	double	move_spd;
+	double	rot_spd;
 }	t_player;
 
 typedef struct s_file
@@ -96,6 +98,8 @@ typedef struct s_data
 	t_map		map;
 	t_assets	asset;
 	t_player	player;
+	int			keys[515];
+	int			running;
 
 }	t_data;
 
