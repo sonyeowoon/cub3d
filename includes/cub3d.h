@@ -6,7 +6,7 @@
 /*   By: sangseo <sangseo@student.42gyeongsan.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:31:46 by sangseo           #+#    #+#             */
-/*   Updated: 2025/11/07 11:31:56 by sangseo          ###   ########.fr       */
+/*   Updated: 2025/11/11 19:39:14 by sangseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,11 @@ void	draw(t_data *data);
 void	render_frame(t_data *data, t_player *p);
 
 // hooks
-int on_loop(t_data *data);
-int on_key_press(int kc, t_data *data);
-int on_key_release(int kc, t_data *data);
-int on_close(t_data *data);
+int		on_loop(t_data *data);
+int		on_key_press(int kc, t_data *data);
+int		on_key_release(int kc, t_data *data);
+int		on_close(t_data *data);
+void	move_player(t_data *d, t_player *pl, int kc);
+void	rotate_player(t_player *p, int kc);
 
 #endif

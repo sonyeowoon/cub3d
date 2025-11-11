@@ -28,7 +28,7 @@ INIT_SRC = init_data.c init_mlx.c init_render.c
 INIT_LOC = $(addprefix $(INIT_DIR)/, $(INIT_SRC))
 
 RENDER_DIR = $(SRC_DIR)/render
-RENDER_SRC = draw.c render.c hooks.c
+RENDER_SRC = draw.c render.c hooks.c move.c
 RENDER_LOC = $(addprefix $(RENDER_DIR)/, $(RENDER_SRC))
 
 SRCS =	main.c \
