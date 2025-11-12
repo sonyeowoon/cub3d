@@ -62,9 +62,9 @@ static int	check_map_elements(t_data *data, char **map)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = -1;
 	data->player.dir = '0';
-	while (map[i] != NULL)
+	while (map[++i] != NULL)
 	{
 		j = 0;
 		while (map[i][j])
@@ -73,7 +73,8 @@ static int	check_map_elements(t_data *data, char **map)
 				j++;
 			if (map[i][j] == '\0')
 				break ;
-			if (!(ft_strchr("NSEW10", map[i][j])) && !is_space_ex_newline(map[i][j]))
+			if (!(ft_strchr("NSEW10", map[i][j])) && \
+					!is_space_ex_newline(map[i][j]))
 				return (1);
 			if (ft_strchr("NSEW", map[i][j]) && data->player.dir != '0')
 				return (1);
@@ -81,7 +82,6 @@ static int	check_map_elements(t_data *data, char **map)
 				data->player.dir = map[i][j];
 			j++;
 		}
-		i++;
 	}
 	return (0);
 }
@@ -112,4 +112,3 @@ int	validate_map(t_data *data, t_map *map)
 		return (treat_err("file err"), 1);
 	return (0);
 }
-

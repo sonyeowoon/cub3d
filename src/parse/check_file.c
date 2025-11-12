@@ -21,9 +21,8 @@ static int	is_cub_file(char *file)
 	extension = ".cub";
 	len = ft_strlen(file);
 	if (len < 4)
-		return (1);		
+		return (1);
 	file_ex = ft_substr(file, len - 4, 4);
-	
 	if (ft_strncmp(file_ex, extension, 4) != 0)
 		return (free(file_ex), 1);
 	return (free(file_ex), 0);
@@ -38,9 +37,8 @@ static int	is_xpm_file(char *file)
 	extension = ".xpm";
 	len = ft_strlen(file);
 	if (len < 4)
-		return (1);	
+		return (1);
 	file_ex = ft_substr(file, len - 4, 4);
-	
 	if (ft_strncmp(file_ex, extension, 4) != 0)
 		return (free(file_ex), 1);
 	return (free(file_ex), 0);

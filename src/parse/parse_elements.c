@@ -63,7 +63,8 @@ static int	get_texture(t_assets *asset, char **file, int i, int j)
 		j++;
 	if (ft_isprint(file[i][j]) && !ft_isdigit(file[i][j]))
 	{
-		if (ft_isprint(file[i][j + 1]) && !ft_isdigit(file[i][j + 1]) && is_space_ex_newline(file[i][j + 2]))
+		if (ft_isprint(file[i][j + 1]) && !ft_isdigit(file[i][j + 1]) && \
+				is_space_ex_newline(file[i][j + 2]))
 		{
 			if (set_xpm_texture(asset, file[i], j) != 0)
 				return (treat_err("set xpm"), 1);
@@ -77,8 +78,8 @@ static int	get_texture(t_assets *asset, char **file, int i, int j)
 		}
 	}
 	else if (ft_isdigit(file[i][j]))
-		return 2;
-	return 0;
+		return (2);
+	return (0);
 }
 
 int	parse_header(t_file *file, t_assets *asset)

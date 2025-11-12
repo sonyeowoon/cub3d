@@ -40,7 +40,7 @@ static int	check_side_wall(char *line)
 	i = 0;
 	while (is_space_ex_newline(line[i]))
 		i++;
-	if(line[i] != '1')
+	if (line[i] != '1')
 		return (1);
 	j = ft_strlen(line) - 1;
 	while (j >= i && is_space_ex_newline(line[j]))

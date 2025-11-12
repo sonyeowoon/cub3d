@@ -37,7 +37,7 @@ static int	get_map_width(char **file, int read_count)
 {
 	int	width;
 	int	len;
-	
+
 	width = ft_strlen(file[read_count]);
 	while (file[read_count])
 	{
@@ -85,5 +85,5 @@ int	extract_map(t_file *file, t_map *map)
 		return (perror("malloc"), 1);
 	if (set_map(file, map, map->map, file->read_count) != 0)
 		return (1);
-	return (0);	
+	return (0);
 }

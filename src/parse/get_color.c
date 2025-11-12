@@ -30,7 +30,8 @@ static int	get_rgb(unsigned int *bg, char *line)
 	c[0] = ft_atoi(colors[0]);
 	c[1] = ft_atoi(colors[1]);
 	c[2] = ft_atoi(colors[2]);
-	if (!(c[0] >= 0 && c[0] <= 255 && c[1] >= 0 && c[1] <= 255 && c[2] >= 0 && c[2] <= 255))
+	if (!(c[0] >= 0 && c[0] <= 255 && c[1] >= 0 && c[1] <= 255 && c[2] >= 0 && \
+				c[2] <= 255))
 		return (-1);
 	if (c[0] == -1 || c[1] == -1 || c[2] == -1)
 		return (-1);
@@ -41,7 +42,7 @@ static int	get_rgb(unsigned int *bg, char *line)
 int	set_color_rgb(t_assets *asset, char *line, int j)
 {
 	if (line[j + 1] && line[j + 1] != ' ' && line[j + 1] != '\t')
-		return 1;
+		return (1);
 	if (line[j] == 'F' && asset->has_floor == 0)
 	{
 		asset->has_floor = get_rgb(&asset->floor_rgb, &line[j + 2]);

@@ -23,5 +23,4 @@ int	check_texture_path(t_assets *asset)
 	if (check_file(asset->east.path, 0) != 0)
 		return (1);
 	return (0);
-		
 }

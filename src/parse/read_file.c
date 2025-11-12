@@ -1,13 +1,12 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                         :+:      :+:    :+:   */
+/*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 22:39:29 by jechoi            #+#    #+#             */
-/*   Updated: 2025/10/23 00:06:12 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/11/12 22:33:30 by sangseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +66,7 @@ static char	**get_lines(int fd, t_file *file)
 {
 	char	**lines;
 	char	*line;
-	int 	line_len;
+	int		line_len;
 	int		i;
 
 	lines = malloc(sizeof(char *) * (file->line_count + 1));

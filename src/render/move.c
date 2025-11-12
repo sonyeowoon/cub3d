@@ -14,18 +14,21 @@
 
 static int	is_block(t_data *data, double nx, double ny)
 {
-	int x=(int)nx;
-	int y=(int)ny;
+	int	x;
+	int	y;
+
+	x = (int)nx;
+	y = (int)ny;
 	if (x < 0 || y < 0 || x >= data->map.width || y >= data->map.height)
-		return 1;
+		return (1);
 	return (data->map.map[y][x] == '1');
 }
 
 void	move_player(t_data *d, t_player *pl, int kc)
 {
-	double	mv_x;
-	double	mv_y;
-	double	ngtv;
+	double		mv_x;
+	double		mv_y;
+	double		ngtv;
 	t_vector	nxny;
 
 	ngtv = 1;

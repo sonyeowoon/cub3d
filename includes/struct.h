@@ -12,14 +12,6 @@
 
 #ifndef STRUCT_H
 # define STRUCT_H
-/*
-typedef struct s_color
-{
-	int	r;
-	int	g;
-	int	b;
-}	t_color;
-*/
 
 typedef struct s_vector
 {
@@ -105,14 +97,14 @@ typedef struct s_file
 
 typedef struct s_assets
 {
-	t_texture	north;
-	t_texture	south;
-	t_texture	east;
-	t_texture	west;
-	unsigned int			ceil_rgb;
-	unsigned int			floor_rgb;
-	int			has_ceiling;
-	int			has_floor;
+	t_texture		north;
+	t_texture		south;
+	t_texture		east;
+	t_texture		west;
+	unsigned int	ceil_rgb;
+	unsigned int	floor_rgb;
+	int				has_ceiling;
+	int				has_floor;
 }	t_assets;
 
 typedef struct s_data

@@ -27,9 +27,11 @@ void	background(t_img *fb, int width, int height, t_assets *asset)
 		while (x < width)
 		{
 			if (y < half)
-				*(unsigned int *)(fb->addr + (y * fb->line_len + x * (fb->bpp / 8))) = asset->ceil_rgb;
+				*(unsigned int *)(fb->addr + (y * fb->line_len + x * \
+							(fb->bpp / 8))) = asset->ceil_rgb;
 			else
-				*(unsigned int *)(fb->addr + (y * fb->line_len + x * (fb->bpp / 8))) = asset->floor_rgb;
+				*(unsigned int *)(fb->addr + (y * fb->line_len + x * \
+							(fb->bpp / 8))) = asset->floor_rgb;
 			x++;
 		}
 		y++;
