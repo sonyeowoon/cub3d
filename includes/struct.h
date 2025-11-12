@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:01:44 by jechoi            #+#    #+#             */
-/*   Updated: 2025/11/07 13:09:43 by sangseo          ###   ########.fr       */
+/*   Updated: 2025/11/12 17:45:35 by sangseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,39 @@ typedef struct s_color
 	int	b;
 }	t_color;
 */
+
 typedef struct s_vector
 {
 	double	x;
 	double	y;
 }	t_vector;
+
+typedef struct s_dda
+{
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		step_x;
+	int		step_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		map_x;
+	int		map_y;
+	int		side;
+	double	perp_wall_dist;
+}	t_dda;
+
+typedef struct s_col
+{
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	double	wall_x;
+	int		tex_x;
+	double	step;
+	double	tex_pos;
+}	t_col;
 
 typedef struct s_img
 {

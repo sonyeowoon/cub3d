@@ -17,7 +17,8 @@ int	init_fb(t_data *data, t_img *img)
 	img->img = mlx_new_image(data->mlx, data->win_width, data->win_height);
 	if (img->img == NULL)
 		return (1);
-	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len, &img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_len, 
+			&img->endian);
 	return (0);
 }
 

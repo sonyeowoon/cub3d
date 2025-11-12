@@ -37,6 +37,8 @@ void	init_data(t_data *data);
 void	init_mlx(t_data *data);
 void	init_tex_img(t_data *data, t_assets *asset);
 int		init_pl_vector(t_player *player, char dir);
+void	init_img(t_img *img);
+void	init_texture(t_texture *texture);
 
 // parse
 int		parse_args(t_data *data, char **argv);
@@ -59,7 +61,8 @@ void	treat_err(char *str);
 
 // render
 void	draw(t_data *data);
-void	render_frame(t_data *data, t_player *p);
+void	render_frame(t_data *data);
+void	dda(t_data *data, t_dda *dv, int x);
 
 // hooks
 int		on_loop(t_data *data);

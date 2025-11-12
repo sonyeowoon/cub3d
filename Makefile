@@ -24,11 +24,11 @@ UTILS_SRC = ft_is.c print_err.c
 UTILS_LOC = $(addprefix $(UTILS_DIR)/, $(UTILS_SRC))
 
 INIT_DIR = $(SRC_DIR)/init
-INIT_SRC = init_data.c init_mlx.c init_render.c
+INIT_SRC = init_data.c init_data2.c init_mlx.c init_render.c
 INIT_LOC = $(addprefix $(INIT_DIR)/, $(INIT_SRC))
 
 RENDER_DIR = $(SRC_DIR)/render
-RENDER_SRC = draw.c render.c hooks.c move.c
+RENDER_SRC = draw.c render.c hooks.c move.c dda.c
 RENDER_LOC = $(addprefix $(RENDER_DIR)/, $(RENDER_SRC))
 
 SRCS =	main.c \

@@ -39,6 +39,6 @@ void	background(t_img *fb, int width, int height, t_assets *asset)
 void	draw(t_data *data)
 {
 	background(&data->fb, data->win_width, data->win_height, &data->asset);
-	render_frame(data, &data->player);
+	render_frame(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->fb.img, 0, 0);
 }
