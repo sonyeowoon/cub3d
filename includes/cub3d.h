@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:31:46 by sangseo           #+#    #+#             */
-/*   Updated: 2025/11/13 14:23:32 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/11/13 16:12:42 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 int		init_fb(t_data *data, t_img *img);
 void	init_data(t_data *data);
 void	init_mlx(t_data *data);
-void	init_tex_img(t_data *data, t_assets *asset);
+int		init_tex_img(t_data *data, t_assets *asset);
 int		init_pl_vector(t_player *player, char dir);
 void	init_img(t_img *img);
 void	init_texture(t_texture *texture);

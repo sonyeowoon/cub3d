@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:18:16 by jechoi            #+#    #+#             */
-/*   Updated: 2025/11/13 14:45:39 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/11/13 16:18:37 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	get_img_data(t_assets *asset)
 			&dir->endian);
 }
 
-void	init_tex_img(t_data *data, t_assets *asset)
+int	init_tex_img(t_data *data, t_assets *asset)
 {
 	t_img	*dir;
 
@@ -38,38 +38,33 @@ void	init_tex_img(t_data *data, t_assets *asset)
 	dir->img = mlx_xpm_file_to_image(data->mlx, asset->north.path, \
 			&dir->w, &dir->h);
 	if (dir->img == NULL)
-		return ;
-		//return (free_exit(data), treat_err("mlx img"), 1);
+		return (treat_err("mlx"), 1);
 	dir = &asset->south.img;
 	dir->img = mlx_xpm_file_to_image(data->mlx, asset->south.path, \
 			&dir->w, &dir->h);
 	if (dir->img == NULL)
-		return ;
-		//return (free_exit(data), treat_err("mlx img"), 1);
+		return (treat_err("mlx"), 1);
 	dir = &asset->east.img;
 	dir->img = mlx_xpm_file_to_image(data->mlx, asset->east.path, \
 			&dir->w, &dir->h);
 	if (dir->img == NULL)
-		return ;
-		//return (free_exit(data), treat_err("mlx img"), 1);
+		return (treat_err("mlx"), 1);
 	dir = &asset->west.img;
 	dir->img = mlx_xpm_file_to_image(data->mlx, asset->west.path, \
 			&dir->w, &dir->h);
 	if (asset->west.img.img == NULL)
-		return ;
-		//return (free_exit(data), treat_err("mlx img"), 1);
+		return (treat_err("mlx"), 1);
 	get_img_data(asset);
+	return (0);
 }
 
 void	init_mlx(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		return ;
-		//return (free_exit(data), treat_err("mlx"), 1);
+		return (game_exit(data), treat_err("mlx"));
 	data->win = mlx_new_window(data->mlx, data->win_width, data->win_height, \
 			"Cub3D");
 	if (!data->win)
-		return ;
-		//return (free_exit(data), treat_err("mlx"), 1);
+		return (game_exit(data), treat_err("mlx"));
 }

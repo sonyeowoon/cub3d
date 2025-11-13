@@ -1,0 +1,6 @@
+{
+  "files.associations": {
+    "*.sol": "solidity",
+    "cub3d.h": "c"
+  }
+}
