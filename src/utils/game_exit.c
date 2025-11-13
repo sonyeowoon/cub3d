@@ -29,12 +29,10 @@ void	destroy_img(t_data *d, t_img *fb, t_assets *as)
 void	game_exit(t_data *d)
 {
 	destroy_img(d, &d->fb, &d->asset);
-	/*
 	if (d->mlx)
 	{
 		mlx_destroy_display(d->mlx);
 		free(d->mlx);
 	}
-	*/
 	parse_free_data(d);
 }

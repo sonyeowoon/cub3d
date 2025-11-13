@@ -66,4 +66,5 @@ void	init_data(t_data *data)
 	init_img(&data->fb);
 	init_player(&data->player);
 	init_assets(&data->asset);
+	data->running = 1;
 }
