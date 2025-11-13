@@ -33,18 +33,10 @@ int main(int argc, char **argv)
 	}
 	draw(&data);
 	mlx_hook(data.win, 2, 1L<<0, on_key_press, &data);
-	mlx_hook(data.win, 3, 1L<<1, on_key_release, &data);
 	mlx_hook(data.win, 17, 0, on_close, &data);
 	mlx_loop_hook(data.mlx, on_loop, &data);
 	mlx_loop(data.mlx);
-	//destroy
+	game_exit(&data);
 
-	//if (raycast(&data) != 0)
-	//	return (1);
-	// init_textures(&data);
-
-
-	
-	// mlx_loop(data.mlx);
 	return (0);
 }

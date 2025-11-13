@@ -20,7 +20,7 @@ PARSE_SRC = check_file.c parse_args.c check_map_wall.c parse_elements.c check_pa
 PARSE_LOC = $(addprefix $(PARSE_DIR)/, $(PARSE_SRC))
 
 UTILS_DIR = $(SRC_DIR)/utils
-UTILS_SRC = ft_is.c print_err.c
+UTILS_SRC = ft_is.c print_err.c game_exit.c
 UTILS_LOC = $(addprefix $(UTILS_DIR)/, $(UTILS_SRC))
 
 INIT_DIR = $(SRC_DIR)/init

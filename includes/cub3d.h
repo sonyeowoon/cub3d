@@ -58,6 +58,10 @@ int		is_space2(char c);
 int		is_space_ex_newline(char c);
 void	print_err(char *str);
 void	treat_err(char *str);
+void	destroy_img(t_data *d, t_img *fb, t_assets *as);
+void	free_map(t_map *m);
+//void	free_file(t_file *f);
+void	game_exit(t_data *d);
 
 // render
 void	draw(t_data *data);
@@ -67,7 +71,6 @@ void	dda(t_data *data, t_dda *dv, int x);
 // hooks
 int		on_loop(t_data *data);
 int		on_key_press(int kc, t_data *data);
-int		on_key_release(int kc, t_data *data);
 int		on_close(t_data *data);
 void	move_player(t_data *d, t_player *pl, int kc);
 void	rotate_player(t_player *p, int kc);

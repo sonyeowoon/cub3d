@@ -6,7 +6,7 @@
 /*   By: sangseo <sangseo@student.42gyeongsan.      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 22:57:27 by sangseo           #+#    #+#             */
-/*   Updated: 2025/11/12 22:57:59 by sangseo          ###   ########.fr       */
+/*   Updated: 2025/11/13 13:11:03 by sangseo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,7 @@ int	on_key_press(int kc, t_data *data)
 		rotate_player(&data->player, kc);
 	draw(data);
 	if (kc == 65307)
-	{
-		data->keys[514] = 1;
 		on_close(data);
-	}
-	return (0);
-}
-
-int	on_key_release(int kc, t_data *data)
-{
-	if (kc >= 0 && kc < 512)
-		data->keys[kc] = 0;
-	if (kc == 65361)
-		data->keys[512] = 0;
-	if (kc == 65363)
-		data->keys[513] = 0;
-	if (kc == 65307)
-		data->keys[514] = 0;
 	return (0);
 }
 
