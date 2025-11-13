@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 19:25:56 by jechoi            #+#    #+#             */
-/*   Updated: 2025/10/24 14:20:05 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/11/13 13:05:50 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ int main(int argc, char **argv)
 	t_data data;
 
 	if (argc != 2)
-		return (print_err("argc"), 1);
+		return (treat_err("argc"), 1);
 	init_data(&data);
 	if (parse_args(&data, argv) != 0)
-		return (1);
+		return (parse_free_data(&data), 1);
 	init_mlx(&data);
 	if (init_fb(&data, &data.fb))
 		printf("\n");
@@ -37,6 +37,5 @@ int main(int argc, char **argv)
 	mlx_loop_hook(data.mlx, on_loop, &data);
 	mlx_loop(data.mlx);
 	game_exit(&data);
-
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 05:15:46 by jechoi            #+#    #+#             */
-/*   Updated: 2025/10/24 13:55:53 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/11/13 14:35:58 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,7 @@ static int	check_pos_valid(t_data *data, char **map)
 	y = (int)data->player.y;
 	x = (int)data->player.x;
 	if (ft_strlen(map[y - 1]) < (size_t)x
-		|| ft_strlen(map[y + 1]) < (size_t)x
-		|| is_space2(map[y][x - 1]) != 0
-		|| is_space2(map[y][x + 1]) != 0
-		|| is_space2(map[y - 1][x]) != 0
-		|| is_space2(map[y + 1][x]) != 0)
+		|| ft_strlen(map[y + 1]) < (size_t)x)
 		return (1);
 	return (0);
 }
@@ -99,16 +95,16 @@ static int	check_file_not_end(t_file *file, t_map *map)
 int	validate_map(t_data *data, t_map *map)
 {
 	if (!map)
-		return (treat_err("map parsing err"), 1);
+		return (treat_err("Map parsing err"), 1);
 	if (check_map_elements(data, map->map) != 0)
-		return (treat_err("map elements err"), 1);
+		return (treat_err("Map elements err"), 1);
 	if (check_map_wall(map) != 0)
-		return (treat_err("no wall"), 1);
+		return (treat_err("No wall"), 1);
 	if (map->height < 3)
-		return (treat_err("small map"), 1);
+		return (treat_err("Small map"), 1);
 	if (check_player(data, map->map) != 0)
-		return (treat_err("player err"), 1);
+		return (treat_err("Player err"), 1);
 	if (check_file_not_end(&data->file, map) != 0)
-		return (treat_err("file err"), 1);
+		return (treat_err("File err"), 1);
 	return (0);
 }

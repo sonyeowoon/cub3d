@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 20:54:13 by jechoi            #+#    #+#             */
-/*   Updated: 2025/10/23 00:21:38 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/11/13 14:37:41 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,13 @@ int	check_file(char *file, int cub)
 {
 	int	fd;
 
+	if (cub == 1 && is_cub_file(file) != 0)
+		return (treat_err("Not cub file"), 1);
+	if (cub == 0 && is_xpm_file(file) != 0)
+		return (treat_err("Not xpm file"), 1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (perror("open"), 1);
+		return (treat_err(strerror(errno)), 1);
 	close(fd);
-	if (cub == 1 && is_cub_file(file) != 0)
-		return (print_err("not cub file"), 1);
-	if (cub == 0 && is_xpm_file(file) != 0)
-		return (print_err("not xpm file"), 1);
 	return (0);
 }

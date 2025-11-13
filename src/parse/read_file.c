@@ -6,7 +6,7 @@
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 22:39:29 by jechoi            #+#    #+#             */
-/*   Updated: 2025/11/12 22:33:30 by sangseo          ###   ########.fr       */
+/*   Updated: 2025/11/13 12:37:41 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	count_lines(const char *filename)
 
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (perror("open"), -1);
+		return (treat_err(strerror(errno)), -1);
 	count = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -47,7 +47,7 @@ static int	count_lines(const char *filename)
 	}
 	close(fd);
 	if (count == 0)
-		return (print_err("empty file file"), -1);
+		return (treat_err("Empty file file"), -1);
 	return (count);
 }
 
@@ -71,7 +71,7 @@ static char	**get_lines(int fd, t_file *file)
 
 	lines = malloc(sizeof(char *) * (file->line_count + 1));
 	if (!lines)
-		return (perror("malloc"), NULL);
+		return (treat_err(strerror(errno)), NULL);
 	i = -1;
 	while (++i < file->line_count)
 	{
@@ -79,7 +79,7 @@ static char	**get_lines(int fd, t_file *file)
 		if (!line)
 		{
 			free_file_lines(lines, i);
-			return (close(fd), print_err("gnl failed"), NULL);
+			return (close(fd), treat_err("GNL failed"), NULL);
 		}
 		trim_newline(line);
 		lines[i] = line;
@@ -97,13 +97,13 @@ int	read_file(const char *filename, t_file *file)
 	int		fd;
 
 	if (!filename || !file)
-		return (print_err("invalid file args"), 1);
+		return (treat_err("Invalid file args"), 1);
 	file->line_count = count_lines(filename);
 	if (file->line_count == -1)
 		return (1);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (perror("open"), 1);
+		return (treat_err(strerror(errno)), 1);
 	lines = get_lines(fd, file);
 	if (!lines)
 		return (1);

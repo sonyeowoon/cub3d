@@ -118,7 +118,6 @@ typedef struct s_data
 	t_map		map;
 	t_assets	asset;
 	t_player	player;
-//	int			keys[515];
 	int			running;
 
 }	t_data;

@@ -5,65 +5,129 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 07:11:32 by jechoi            #+#    #+#             */
-/*   Updated: 2025/10/24 13:54:29 by jechoi           ###   ########.fr       */
+/*   Created: 2025/11/13 14:15:03 by jechoi            #+#    #+#             */
+/*   Updated: 2025/11/13 14:40:57 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	check_top_or_bottom(char **map, int i, int j, int width)
+// 공백이 맵 경계로 이어지는지 확인 (공백 flood fill)
+static int	check_space_leak(t_map *map, char **visited, int y, int x)
 {
-	if (!map || !map[i] || !map[i][j])
+	if (y < 0 || y >= map->height)
 		return (1);
-	while (map[i][j] == ' ' || map[i][j] == '\t'
-	|| map[i][j] == '\r' || map[i][j] == '\v'
-	|| map[i][j] == '\f')
-		j++;
-	while (j < width && map[i][j])
-	{
-		if (map[i][j] == '\0')
-			return (0);
-		if (map[i][j] != '1' && !is_space_ex_newline(map[i][j]))
-			return (1);
-		else
-			j++;
-	}
+	if (x < 0 || !map->map[y])
+		return (1);
+	if (x >= (int)ft_strlen(map->map[y]))
+		return (1);
+	if (visited[y][x] == 'V' || map->map[y][x] == '1')
+		return (0);
+	if (!is_space_ex_newline(map->map[y][x]))
+		return (0);
+	visited[y][x] = 'V';
+	if (check_space_leak(map, visited, y - 1, x))
+		return (1);
+	if (check_space_leak(map, visited, y + 1, x))
+		return (1);
+	if (check_space_leak(map, visited, y, x - 1))
+		return (1);
+	if (check_space_leak(map, visited, y, x + 1))
+		return (1);
 	return (0);
 }
 
-static int	check_side_wall(char *line)
+// 이동 가능한 공간 flood fill
+static int	flood_fill_walkable(t_map *map, char **visited, int y, int x)
 {
-	int	i;
-	int	j;
+	char	c;
 
-	i = 0;
-	while (is_space_ex_newline(line[i]))
-		i++;
-	if (line[i] != '1')
+	if (y < 0 || y >= map->height || x < 0)
 		return (1);
-	j = ft_strlen(line) - 1;
-	while (j >= i && is_space_ex_newline(line[j]))
-		j--;
-	if (line[j] != '1')
+	if (!map->map[y] || x >= (int)ft_strlen(map->map[y]))
+		return (1);
+	c = map->map[y][x];
+	if (visited[y][x] == 'V' || c == '1')
+		return (0);
+	if (is_space_ex_newline(c))
+		return (check_space_leak(map, visited, y, x));
+	visited[y][x] = 'V';
+	if (flood_fill_walkable(map, visited, y - 1, x))
+		return (1);
+	if (flood_fill_walkable(map, visited, y + 1, x))
+		return (1);
+	if (flood_fill_walkable(map, visited, y, x - 1))
+		return (1);
+	if (flood_fill_walkable(map, visited, y, x + 1))
 		return (1);
 	return (0);
+}
+
+static char	**create_visited_map(t_map *map)
+{
+	char	**visited;
+	int		i;
+	int		j;
+
+	visited = malloc(sizeof(char *) * map->height);
+	if (!visited)
+		return (treat_err(strerror(errno)), NULL);
+	i = -1;
+	while (++i < map->height)
+	{
+		visited[i] = malloc(sizeof(char) * (ft_strlen(map->map[i]) + 1));
+		if (!visited[i])
+		{
+			while (--i >= 0)
+				free(visited[i]);
+			free(visited);
+			return (treat_err(strerror(errno)), NULL);
+		}
+		j = -1;
+		while (map->map[i][++j])
+			visited[i][j] = '0';
+		visited[i][j] = '\0';
+	}
+	return (visited);
+}
+
+static void	free_visited_map(char **visited, int height)
+{
+	int	i;
+
+	i = 0;
+	while (i < height)
+	{
+		free(visited[i]);
+		i++;
+	}
+	free(visited);
 }
 
 int	check_map_wall(t_map *map)
 {
-	int	i;
+	char	**visited;
+	int		i;
+	int		j;
+	int		result;
 
-	if (check_top_or_bottom(map->map, 0, 0, map->width) != 0)
+	visited = create_visited_map(map);
+	if (!visited)
 		return (1);
-	i = 1;
-	while (i < (map->height - 1))
+	result = 0;
+	i = -1;
+	while (++i < map->height && result == 0)
 	{
-		if (check_side_wall(map->map[i]) != 0)
-			return (1);
-		i++;
+		j = -1;
+		while (map->map[i][++j] && result == 0)
+		{
+			if (visited[i][j] != 'V' &&
+				(map->map[i][j] == '0' || map->map[i][j] == 'N'
+				|| map->map[i][j] == 'S' || map->map[i][j] == 'E'
+				|| map->map[i][j] == 'W'))
+				result = flood_fill_walkable(map, visited, i, j);
+		}
 	}
-	if (check_top_or_bottom(map->map, i, 0, map->width) != 0)
-		return (1);
-	return (0);
+	free_visited_map(visited, map->height);
+	return (result);
 }

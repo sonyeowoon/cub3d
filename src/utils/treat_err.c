@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_err.c                                        :+:      :+:    :+:   */
+/*   treat_err.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 00:40:29 by jechoi            #+#    #+#             */
-/*   Updated: 2025/10/24 08:40:31 by jechoi           ###   ########.fr       */
+/*   Updated: 2025/11/13 12:33:18 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	print_err(char *str)
-{
-	printf("%s", str);
-}
-
 void	treat_err(char *str)
 {
-	printf("%s", str);
+	write(1, "Error: ", 7);
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
 }

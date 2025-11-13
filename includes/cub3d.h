@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sangseo <sangseo@student.42gyeongsan.      +#+  +:+       +#+        */
+/*   By: jechoi <jechoi@student.42gyeongsan.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:31:46 by sangseo           #+#    #+#             */
-/*   Updated: 2025/11/11 19:39:14 by sangseo          ###   ########.fr       */
+/*   Updated: 2025/11/13 14:23:32 by jechoi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <errno.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <string.h>
 # include <fcntl.h>
 # include <math.h>
 # include <sys/time.h>
@@ -50,17 +51,16 @@ int		extract_map(t_file *file, t_map *map);
 int		validate_map(t_data *data, t_map *map);
 int		check_map_wall(t_map *map);
 int		check_texture_path(t_assets *asset);
-void	free_file(t_file *file);
+void	parse_free_data(t_data *data);
 
 // utils
 int		is_space(char c);
 int		is_space2(char c);
 int		is_space_ex_newline(char c);
-void	print_err(char *str);
 void	treat_err(char *str);
+int		ft_iscardinal(char c1, char c2);
+int		is_valid_char(char c);
 void	destroy_img(t_data *d, t_img *fb, t_assets *as);
-void	free_map(t_map *m);
-//void	free_file(t_file *f);
 void	game_exit(t_data *d);
 
 // render

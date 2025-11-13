@@ -20,7 +20,7 @@ PARSE_SRC = check_file.c parse_args.c check_map_wall.c parse_elements.c check_pa
 PARSE_LOC = $(addprefix $(PARSE_DIR)/, $(PARSE_SRC))
 
 UTILS_DIR = $(SRC_DIR)/utils
-UTILS_SRC = ft_is.c print_err.c game_exit.c
+UTILS_SRC = ft_is.c treat_err.c game_exit.c
 UTILS_LOC = $(addprefix $(UTILS_DIR)/, $(UTILS_SRC))
 
 INIT_DIR = $(SRC_DIR)/init
@@ -45,6 +45,7 @@ OBJ = $(patsubst %.c, $(OBJS_DIR)/%.o, $(SRCS))
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	make -C $(MLX_DIR)
 	make -C $(GNL_DIR)
 	make -C $(LIBFT_DIR)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT_A) $(GNL) $(MLX_LIB) $(MLX_FLAGS)
@@ -54,6 +55,7 @@ $(OBJS_DIR)/%.o : %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
+	make clean -C $(MLX_DIR)
 	make clean -C $(GNL_DIR)
 	make clean -C $(LIBFT_DIR)
 	rm -rf $(OBJS_DIR)
